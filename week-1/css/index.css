@@ -144,8 +144,8 @@ body {
 
 @media screen and (min-width: 1200px) {
     .row-item img {
-        width: 45vw;
-        height: 15vw;
+        width: 570px;
+        height: auto;
     }
     #menu {
         display: none;
@@ -155,7 +155,7 @@ body {
 @media screen and (min-width: 800px)and (max-width: 1200px) {
     .row-item img {
         width: 45vw;
-        height: 15vw;
+        height: auto;
     }
     #menu {
         display: none;
@@ -168,7 +168,7 @@ body {
     }
     .row-item img {
         width: 45vw;
-        height: 15vw;
+        height: auto;
     }
 }
 
@@ -180,7 +180,7 @@ body {
         float: none;
     }
     .row-item img {
-        width: 50vw;
-        height: 30vw;
+        width: 90vw;
+        height: auto;
     }
 }
