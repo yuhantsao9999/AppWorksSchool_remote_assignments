@@ -14,23 +14,34 @@
     please enter a number:
     <input id="number" type="text" name="number">
     <br><br>
-    <button id="submit">submit </button>
+    <button onclick="ShowNumber()" id="submit">submit </button>
+    <p id="ans"></p>
 
 
     <script>
-        $("#submit").click(function() {
-            var getnumber = $("#number").val();
-            $.ajax({
-                url: "/getData",
-                type: 'GET',
-                data: {
-                    number: getnumber,
-                },
-                success: function(res) {
-                    alert("The answer is :" + res);
+        function ShowNumber() {
+            var getnumber = document.getElementById("number").value;
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "./getData?number=" + getnumber);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function() {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    document.getElementById("ans").innerHTML = "Your anser is : " + xhttp.responseText;
                 }
-            });
-        });
+            }
+            xhttp.send();
+
+
+        }
+        // $("#submit").click(function() {
+        // $.ajax({
+        //     url: "/getData",
+        //     type: 'GET',
+        //     data: {
+        //         number: getnumber,
+        //     },
+        //     success: function(res) {
+        //         alert("The answer is :" + res);
     </script>
 </body>
 
