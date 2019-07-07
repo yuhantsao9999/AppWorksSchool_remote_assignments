@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>week-4</title>
+    <script>
+        // Q1
+        function delayedResult(n1, n2, delayTime, callback) {
+            var result = n1 + n2;
+            setTimeout(callback, delayTime, result);
+        }
+        delayedResult(4, 5, 3000, function(result) {
+            console.log(result);
+        });
+        delayedResult(-5, 10, 2000, function(result) {
+            window.alert(result);
+        });
+        // Q2
+        // function ajax(src, callback) {
+        //     return (src);
+        // }
+
+        // function render(data) {
+        //     var data = document.createElement("div");
+        //     document.body.appndChild(data);
+        // }
+        // ajax("https://cwpeng.github.io/live-records-samples/data/products.json", function(response) {
+        //     render(response);
+        // });
+
+        function ajax(src, callback) {
+            // your code here
+            var xhttp = new XMLHttpRequest();
+            // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let text = JSON.parse(this.responseText);
+                    callback(text);
+                }
+            }
+            xhttp.open("GET", src);
+            xhttp.send();
+        }
+
+        function render(data) {
+            // your code here.
+            // document.createElement() and appendChild() methods are preferred.
+            for (var i = 0; i < data.length; i++) {
+                var newDiv = document.createElement("div");
+                var newContent1 = document.createTextNode("Name : " + data[i].name);
+                var newContent2 = document.createTextNode(" Price : " + data[i].price);
+                var newContent3 = document.createTextNode(" Description : " + data[i].description);
+                newDiv.appendChild(newContent1);
+                newDiv.appendChild(newContent2);
+                newDiv.appendChild(newContent3);
+                document.body.appendChild(newDiv);
+            }
+        }
+        ajax("https://cwpeng.github.io/live-records-samples/data/products.json", function(response) {
+            render(response);
+        }); // you should get product information in JSON format and render data in the pages
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
