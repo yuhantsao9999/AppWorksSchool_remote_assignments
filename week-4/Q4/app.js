@@ -24,6 +24,11 @@ con.connect(function(err) {
     if (err) throw err;
 })
 
+app.get('/wel', function(req, res) {
+    var user = req.query.user;
+    res.send("Welcome : " + user);
+})
+
 app.get('/sp', function(req, res) {
     var email = req.query.email;
     var pwd = req.query.pwd;
@@ -44,7 +49,7 @@ app.get('/sp', function(req, res) {
             })
             res.send("The email is repeated;");
         } else {
-            res.send("Sing up successfully!!!!!!");
+            res.redirect('/wel?user=' + email);
         }
     });
 });
@@ -56,26 +61,10 @@ app.get('/si', function(req, res) {
     con.query(sql, function(err, result) {
         if (err) throw err;
         if (String(result).length > 1) {
-            res.send("Welcome!!!!!");
+            res.redirect('/wel?user=' + email);
         } else {
             res.send("Wrong email or Wrong password!!!!");
         }
     })
 
 });
-
-// con.connect(function(err) {
-//     if (err) throw err;
-//     console.log("Connected!");
-// });
-
-// var con = mysql.createConnection({
-//     host: "localhost",
-//     user: "assignment",
-//     password: "gaga0224"
-// });
-
-// con.connect(function(err) {
-//     if (err) throw err;
-//     console.log("Connected!");
-// });
